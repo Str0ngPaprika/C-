@@ -1,12 +1,16 @@
-// C++.cpp : This file contains the 'main' function. Program execution begins and ends there.
-// https://youtu.be/_bYFu9mBnr4?t=945
+// https://youtu.be/_bYFu9mBnr4?t=3386
 
 #include <iostream>
 
 int main()
 {
+    int intCount;
+    
     std::cout << "Hello World!\n";
-    std::cout << "Testing new line" << std::endl;
+    std::cout << "New line with buffer flush. How many would you like?" << std::endl;
+    std::cin >> intCount;
+    std::cout << "Input was: " << intCount << "\n";
+
     return 0;
 }
 

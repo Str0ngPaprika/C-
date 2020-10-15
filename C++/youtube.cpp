@@ -1,15 +1,22 @@
-// https://youtu.be/_bYFu9mBnr4?t=3386
-
+// https://youtu.be/_bYFu9mBnr4?t=4944
 #include <iostream>
+
+double power(double, int);
+
 
 int main()
 {
-    int intCount;
+    int intBase, intExponent;
+    double dblPower;
 
-    std::cout << "Hello World!\n";
-    std::cout << "New line with buffer flush. How many would you like?" << std::endl;
-    std::cin >> intCount;
-    std::cout << "Input was: " << intCount << "\n";
+    std::cout << "Enter base: ";
+    std::cin >> intBase;
+    std::cout << "Enter Exponent: ";
+    std::cin >> intExponent;
+
+    dblPower = power(intBase, intExponent);
+
+    std::cout << "The Power is: " << dblPower << "\n";
 
     return 0;
 }
@@ -24,3 +31,21 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+double power(double dblBase, int intExponent)
+{
+    int intCount;
+    double dblCalc;
+
+    intCount = 0;
+    dblCalc = 0;
+
+    dblCalc = dblBase;
+
+    for (intCount = 1; intCount < intExponent; intCount++)
+    {
+        dblCalc = dblCalc * dblBase;
+    }
+
+    return dblCalc;
+}

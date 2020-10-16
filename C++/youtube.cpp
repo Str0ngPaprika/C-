@@ -1,6 +1,7 @@
-// https://youtu.be/_bYFu9mBnr4?t=6578
+// https://youtu.be/_bYFu9mBnr4?t=8097
 #include <iostream>
 #include <climits>
+#include <float.h>
 
 double power(double, int);
 
@@ -17,14 +18,20 @@ int main()
     unsigned long ulgX;
     unsigned long long ullX;
 
-    std::cout << "Short:" <<SHRT_MIN<<" to "<<SHRT_MAX << std::endl;
-    std::cout << sizeof(int) << std::endl;
-    std::cout << sizeof(long) << std::endl;
-    std::cout << sizeof(long long) << std::endl;
-    std::cout << sizeof(unsigned short) << std::endl;
-    std::cout << sizeof(unsigned int) << std::endl;
-    std::cout << sizeof(unsigned long) << std::endl;
-    std::cout << sizeof(unsigned long long) << std::endl;    
+    std::cout << "Character\t\t:" << CHAR_MIN << " to " << CHAR_MAX << std::endl;
+    std::cout << "Unsigned Character\t\t:0 to " << UCHAR_MAX << std::endl;
+    
+    std::cout << "Short             :" << SHRT_MIN << " to " << SHRT_MAX << std::endl;
+    std::cout << "Unsigned Short    :0 to " << USHRT_MAX << std::endl;
+
+    std::cout << "Integer           :" << INT_MIN << " to " << INT_MAX << std::endl;
+    std::cout << "Unsigned Integer  :0 to " << UINT_MAX << std::endl;
+
+    std::cout << "Long              :" << LONG_MIN << " to " << LONG_MAX << std::endl;
+    std::cout << "Unsigned Long     :0 to " << ULONG_MAX << std::endl;
+    
+    std::cout << "Long Long         :" << LLONG_MIN << " to " << LLONG_MAX << std::endl;
+    std::cout << "Unsigned Long Long:0 to " << ULLONG_MAX << std::endl;
 
     return 0;
 }

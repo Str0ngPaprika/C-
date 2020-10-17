@@ -1,58 +1,74 @@
-// https://youtu.be/_bYFu9mBnr4?t=8918
+// https://youtu.be/_bYFu9mBnr4?t=9424 
 #include <iostream>
-#include <climits>
-#include <float.h>
+#include <cmath>
+#include <string>
 
-double power(double, int);
-
+int PrimeFactors(long long);
+int NextPrime(int);
+bool isPrime(int);
 
 int main()
 {
-    short shtX;
-    int intX;
-    long lngX;
-    long long llgX;
+      
     
-    unsigned short ustX;
-    unsigned int uitX;
-    unsigned long ulgX;
-    unsigned long long ullX;
-
-    std::cout << "Character\t\t:" << CHAR_MIN << " to " << CHAR_MAX << std::endl;
-    std::cout << "Unsigned Character\t\t:0 to " << UCHAR_MAX << std::endl;
-    
-    std::cout << "Short             :" << SHRT_MIN << " to " << SHRT_MAX << std::endl;
-    std::cout << "Unsigned Short    :0 to " << USHRT_MAX << std::endl;
-
-    std::cout << "Integer           :" << INT_MIN << " to " << INT_MAX << std::endl;
-    std::cout << "Unsigned Integer  :0 to " << UINT_MAX << std::endl;
-
-    std::cout << "Long              :" << LONG_MIN << " to " << LONG_MAX << std::endl;
-    std::cout << "Unsigned Long     :0 to " << ULONG_MAX << std::endl;
-    
-    std::cout << "Long Long         :" << LLONG_MIN << " to " << LLONG_MAX << std::endl;
-    std::cout << "Unsigned Long Long:0 to " << ULLONG_MAX << std::endl;
+    //std::cout << "Next Prime: " << NextPrime(10) << std::endl;
+   std::cout << std::endl << "Largest Prime Factor: " << PrimeFactors(600851475143) << std::endl;
 
     return 0;
 }
 
-double power(double dblBase, int intExponent)
+bool isPrime(int n)
 {
-    int intCount;
-    double dblCalc;
+    // Corner cases  
+    if (n <= 1)  return false;
+    if (n <= 3)  return true;
+ 
+    if (n % 2 == 0 || n % 3 == 0) return false;
 
-    intCount = 0;
-    dblCalc = 0;
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
 
-    dblCalc = dblBase;
+    return true;
+}
 
-    for (intCount = 1; intCount < intExponent; intCount++)
-    {
-        dblCalc = dblCalc * dblBase;
+int NextPrime(int N)
+{
+    if (N <= 1)
+        return 2;
+
+    int prime = N;
+    bool found = false;
+
+    
+    while (!found) {
+        prime++;
+
+        if (isPrime(prime))
+            found = true;
     }
 
-    return dblCalc;
+    return prime;
 }
+
+int PrimeFactors(long long intLimit)
+{
+    int intPrimeFactor=0;
+
+    while (intPrimeFactor < intLimit)
+    {
+        intPrimeFactor = NextPrime(intPrimeFactor);
+        while (intLimit % intPrimeFactor == 0)
+        {
+            intLimit = intLimit / intPrimeFactor;
+            std::cout << intPrimeFactor << " ";
+        }
+ 
+    }
+
+    return intPrimeFactor;
+}
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

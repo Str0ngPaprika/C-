@@ -20,14 +20,144 @@ unsigned long long ProblemEleven(int);
 unsigned long long TriangleNumber(int);
 int NumberOfDivisors(unsigned long long);
 std::string LargeSum(); //Problem 13
+unsigned long long Collatz(unsigned long long); //Problem 14
+unsigned long long DigitSum(int); //Problem 16
+int LetterCount(int); //Problem 17
 
 
 int main()
 {   
     
-    std::cout << std::endl << "Number: " << LargeSum() << std::endl;
+    std::cout << std::endl << "Total Letters: " << LetterCount(5) << std::endl;
 
     return 0;
+}
+
+int LetterCount(int intLimit)
+{
+    int intLetterCount = 0;
+
+    std::string strStart = "12", strNumber="";
+
+    std::string strSingles[10] = { \
+        "single zero",\
+        "one",\
+        "two",\
+        "three",\
+        "four",\
+        "five",\
+        "six",\
+        "seven",\
+        "eight",\
+        "nine" };
+
+    std::string strTeens[10] = { \
+        "teen zero",\
+        "eleven",\
+        "twelve",\
+        "thirteen",\
+        "fourteen",\
+        "fifteen",\
+        "sixteen",\
+        "seventeen",\
+        "eighteen",\
+        "nineteen" };
+
+    std::string strTens[10] = { \
+        "ten zero",\
+        "ten",\
+        "twenty",\
+        "thirty",\
+        "fourty",\
+        "fifty",\
+        "sixty",\
+        "seventy",\
+        "eighty",\
+        "ninety" };
+
+    
+    strNumber = "";
+    if (strStart.length() == 3)
+        {
+        strNumber = strSingles[strStart[0]]+"hundred";
+        }
+   
+
+
+
+    return intLetterCount;
+}
+
+unsigned long long DigitSum(int intLimit)
+{
+    unsigned long long intDigitSum = 0;
+
+    int intTemp = 0;
+
+    std::string strCarry = "", strProd = "", strTemp = "", strInput = "2";
+
+     while(intLimit>1)
+    {
+        strProd = "";
+        strCarry = "";
+        for (int i = strInput.length()-1; i >=0 ; i--)
+        {
+            intTemp = ((strInput[i] - '0') * 2) + atoi(strCarry.c_str());
+            strTemp = std::to_string(intTemp);
+            strProd = strTemp[strTemp.length() - 1] + strProd;
+            strCarry = strTemp.substr(0, strTemp.length() - 1);
+        }
+        strProd = strCarry + strProd;
+        strInput = strProd;
+        intLimit--;
+    }
+
+    for (int i = 0; i < strProd.length(); i++)
+    {
+        intDigitSum += strProd[i] - '0';
+    }
+
+    return intDigitSum;
+}
+
+unsigned long long Collatz(unsigned long long intLimit)
+{
+    unsigned long long intStart = 0, intCount = 0, intTemp=0, intLargest=0;
+
+    while (intLimit > 1)
+    {
+        //std::cout << std::endl << intLimit;
+        
+        intTemp = intLimit;
+        intCount = 1;
+                
+        while (intTemp > 1)
+       {
+            if (intTemp % 2 == 0)
+            {
+                intTemp = intTemp / 2;
+            }
+            else
+            {
+                intTemp = (3 * intTemp) + 1;
+            }
+            
+            //std::cout << " -> " << intTemp;
+            
+            intCount++;      
+        }
+        
+        //std::cout << " Terms: "<<intCount;
+
+        if (intCount>intLargest)
+        {
+            intLargest = intCount;
+            intStart = intLimit;
+        }
+        intLimit--;
+    }
+
+    return intStart; //Largest terms starting number
 }
 
 std::string LargeSum()

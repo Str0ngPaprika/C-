@@ -1,21 +1,22 @@
 #include <iostream>
-#include <cmath>
+#include <fstream>
 #include <string>
-#include <vector>
-#include <algorithm>
 
-int BinarySearchTree();
+
+
+
+int Triangle();
 
 
 int main()
 {
 
-    std::cout << std::endl << "Maximum Total: " << BinarySearchTree() << std::endl;
+    std::cout << std::endl << "Maximum Total: " << Triangle() << std::endl;
 
     return 0;
 }
 
-int BinarySearchTree()
+int Triangle()
 {
     int intMaximumTotal = 0;
 

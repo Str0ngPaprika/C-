@@ -28,16 +28,16 @@ int LetterCount(int); //Problem 17
 int main()
 {   
     
-    std::cout << std::endl << "Total Letters: " << LetterCount(5) << std::endl;
+    std::cout << std::endl << "Total Letters: " << LetterCount(1000) << std::endl;
 
     return 0;
 }
 
 int LetterCount(int intLimit)
 {
-    int intLetterCount = 0;
+    int intCount = 1, intNumber=0;
 
-    std::string strStart = "12", strNumber="";
+    std::string strNumber="";
 
     std::string strSingles[10] = { \
         "single zero",\
@@ -52,7 +52,7 @@ int LetterCount(int intLimit)
         "nine" };
 
     std::string strTeens[10] = { \
-        "teen zero",\
+        "teens zero",\
         "eleven",\
         "twelve",\
         "thirteen",\
@@ -64,28 +64,69 @@ int LetterCount(int intLimit)
         "nineteen" };
 
     std::string strTens[10] = { \
-        "ten zero",\
+        "tens zero",\
         "ten",\
         "twenty",\
         "thirty",\
-        "fourty",\
+        "forty",\
         "fifty",\
         "sixty",\
         "seventy",\
         "eighty",\
         "ninety" };
-
-    
-    strNumber = "";
-    if (strStart.length() == 3)
-        {
-        strNumber = strSingles[strStart[0]]+"hundred";
-        }
    
+    
+    while (intCount<=intLimit)
+    {
 
+        intNumber = intCount;
 
+        if (intNumber > 999)
+        {
+            strNumber += strSingles[intNumber / 1000] + "thousand"; //Can add a space before thousand for legibility
+            intNumber = intNumber - (intNumber / 1000 * 1000);
+            if (intNumber != 0)
+            {
+                strNumber += " and ";
+            }
+        }
 
-    return intLetterCount;
+        if (intNumber > 99)
+        {
+            strNumber += strSingles[intNumber / 100] + "hundred"; //Can add a space before hundred for legibility
+            intNumber = intNumber - (intNumber / 100 * 100);
+            if (intNumber != 0)
+            {
+                strNumber += "and"; //Can add spaces around and for legibility
+            }
+        }
+
+        if (intNumber != 0)
+        {
+            if (intNumber < 10)
+            {
+                strNumber += strSingles[intNumber];
+            }
+            else if (intNumber % 10 == 0)
+            {
+                strNumber += strTens[intNumber / 10];
+            }
+            else if (intNumber < 20)
+            {
+                intNumber = intNumber - (intNumber / 10 * 10);
+                strNumber += strTeens[intNumber];
+            }
+            else
+            {
+                strNumber += strTens[intNumber / 10] + strSingles[intNumber - (intNumber / 10 * 10)]; //For correct grammar, add - between strTens and  strSingles
+            }
+        }
+        intCount++;
+    }
+
+    std::cout << strNumber;
+ 
+    return strNumber.length();
 }
 
 unsigned long long DigitSum(int intLimit)
